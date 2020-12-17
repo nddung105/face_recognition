@@ -14,10 +14,10 @@ class MTCNN:
         return model.load_model(path_weights_file)
 
     def detect_faces(self,
-                    img,
-                    minsize=20,
-                    threshold=[0.6, 0.7, 0.7],
-                    factor=0.709):
+                     img,
+                     minsize=20,
+                     threshold=[0.6, 0.7, 0.7],
+                     factor=0.709):
         """Detects faces in an image, and returns bounding boxes and points for them.
         img: input image
         minsize: minimum faces' size
@@ -157,18 +157,3 @@ class MTCNN:
                 points = points[:, pick]
 
         return total_boxes, points
-
-
-if __name__ == '__main__':
-    img = cv2.imread(
-        '/Users/thuongto30/StudyHust/NhapMonAI/Code/get_data/output/Lương Trọng Trí/0.jpg'
-    )
-    detector = MTCNN(
-        '/Users/thuongto30/StudyHust/NhapMonAI/Code/mtcnn/mtcnn/data/mtcnn_weights.npy'
-    )
-    box, _ = detector.detect_faces(img)
-    cv2.rectangle(img, (int(box[0][0]), int(box[0][1])),
-                  (int(box[0][2]), int(box[0][3])), (0, 155, 255), 2)
-    # print(dtype(img)
-    cv2.imwrite('./out.jpg', img)
-    print(box)

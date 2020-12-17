@@ -29,6 +29,7 @@ def scale_pyramid(m, min_layer, scale_factor=0.709):
         count += 1
     return scales
 
+
 # function [boundingbox] = bbreg(boundingbox,reg)
 def bbreg(boundingbox, reg):
     """Calibrate bounding boxes"""
@@ -153,6 +154,8 @@ def rerec(bboxA):
     bboxA[:, 2:4] = bboxA[:, 0:2] + np.transpose(np.tile(l, (2, 1)))
     return bboxA
 
+
 def imresample(img, sz):
-    im_data = cv2.resize(img, (sz[1], sz[0]), interpolation=cv2.INTER_AREA) #@UndefinedVariable
+    im_data = cv2.resize(img, (sz[1], sz[0]),
+                         interpolation=cv2.INTER_AREA)  #@UndefinedVariable
     return im_data
